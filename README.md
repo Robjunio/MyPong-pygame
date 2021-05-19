@@ -1,2 +1,6 @@
-# MyPong-pygame
-No seguinte repositório será feito o debug e a melhoria do jogo pong feito com o framework do pygames.
+# MyPong
+
+## Developers:
+- Roberto Junio Rodrigues Gomes [github](https://github.com/Robjunio)
+- Wadrian Araujo De Moura [github](https://github.com/wadrian-uea)
+- Wanderberg De Melo Santana [github](https://github.com/wdmsantana)
