@@ -104,7 +104,7 @@ while game_loop:
                     else:
                         ball_dy *= 1  
 
-                    # Condition to mantein the game in a playable speed.
+                    # Condition to maintain the game in a playable speed.
                     if ball_dx < 20.00:  
                         ball_dx *= -1.15
                     else:
