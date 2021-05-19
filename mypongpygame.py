@@ -13,8 +13,8 @@ pygame.display.set_caption("Pong_2- PyGame Edition - 2021.05.18")
 
 # score text
 score_font = pygame.font.Font('assets/PressStart2P.ttf', 44)
-score_text = score_font.render('P1 00 x 00 P2', True, COLOR_WHITE, COLOR_BLACK)  # Alterei aqui pra mostrar qual é o lado do Player 1 e player 2
-score_text_rect = score_text.get_rect()
+score_text = score_font.render('P1 00 x 00 P2', True, COLOR_WHITE, COLOR_BLACK)  # Alterei aqui pra mostrar
+score_text_rect = score_text.get_rect()                                          # qual é o lado do Player 1 e player 2
 score_text_rect.center = (680, 50)
 
 # victory text
@@ -104,7 +104,7 @@ while game_loop:
                     else:
                         ball_dy *= 1  
 
-                    #Alteração pra evitar que o jogo fique rapido demais 
+                    # Alteração pra evitar que o jogo fique rapido demais
                     if ball_dx < 20.00:  
                         ball_dx *= -1.15
                     else:
@@ -114,7 +114,7 @@ while game_loop:
 
         # ball collision with the player 2 's paddle
         # As alterações  aqui foram as mesmas que logo acima
-        if 1200 > ball_x  and ball_x > 1160:
+        if 1200 > ball_x and ball_x > 1160:
             if player_2_y < ball_y + 25:
                 if player_2_y + 150 > ball_y:
                     ball_x = 1160
@@ -192,7 +192,8 @@ while game_loop:
             player_2_y = 570
 
         # update score hud
-        score_text = score_font.render('P1 '+ str(score_1) + ' x ' + str(score_2) + ' P2', True, COLOR_WHITE, COLOR_BLACK)
+        score_text = score_font.render('P1 ' + str(score_1) + ' x ' + str(score_2)
+                                       + ' P2', True, COLOR_WHITE, COLOR_BLACK)
 
         # drawing objects
         screen.blit(ball, (ball_x, ball_y))
