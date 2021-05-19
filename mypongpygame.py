@@ -21,7 +21,7 @@ score_text_rect.center = (680, 50)
 victory_font = pygame.font.Font('assets/PressStart2P.ttf', 100)
 victory_text = victory_font.render('VICTORY', True, COLOR_WHITE, COLOR_BLACK)
 victory_text_rect = score_text.get_rect()
-victory_text_rect.center = (450, 350)
+victory_text_rect.center = (590, 360)
 
 # sound effects
 bounce_sound_effect = pygame.mixer.Sound('assets/bounce.wav')
