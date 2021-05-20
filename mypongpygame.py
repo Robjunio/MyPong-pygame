@@ -25,7 +25,7 @@ victory_text_rect.center = (590, 360)
 
 # Sound effects.
 bounce_sound_effect = pygame.mixer.Sound('assets/bounce.wav')
-scoring_sound_effect = pygame.mixer.Sound('assets/258020__kodack__arcade-bleep-sound.wav')
+scoring_sound_effect = pygame.mixer.Sound('assets/punctuation.wav')
 
 # Player 1.
 player_1 = pygame.image.load("assets/player.png")
@@ -87,6 +87,7 @@ while game_loop:
             bounce_sound_effect.play()
 
         # Ball collision with the player 1 's paddle
+
         if ball_x < 100 and ball_x > 60:
             if player_1_y < ball_y + 25:
                 if player_1_y + 150 > ball_y:
