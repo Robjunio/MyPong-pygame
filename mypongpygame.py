@@ -13,8 +13,8 @@ pygame.display.set_caption("Pong_2- PyGame Edition - 2021.05.18")
 
 # Score text.
 score_font = pygame.font.Font('assets/PressStart2P.ttf', 44)
-score_text = score_font.render('P1 00 x 00 P2', True, COLOR_WHITE, COLOR_BLACK)  
-score_text_rect = score_text.get_rect()                                          
+score_text = score_font.render('P1 00 x 00 P2', True, COLOR_WHITE, COLOR_BLACK)
+score_text_rect = score_text.get_rect()
 score_text_rect.center = (680, 50)
 
 # Victory text.
@@ -52,6 +52,19 @@ score_2 = 0
 game_loop = True
 game_clock = pygame.time.Clock()
 
+
+# Paddle improvement
+def paddle_imp(test):
+    global ball_dy
+
+    if test <= ball_y <= (test + 30) or (test + 120) <= ball_y <= (test + 150):
+        ball_dy *= -1.10  # Increase the speed in the dy.
+    elif (test + 70) <= ball_y <= (test + 80):
+        ball_dy *= 0
+    else:
+        ball_dy *= 1
+
+
 while game_loop:
 
     for event in pygame.event.get():
@@ -88,7 +101,7 @@ while game_loop:
 
         # Ball collision with the player 1 's paddle
 
-        if ball_x < 100 and ball_x > 60:
+        if 100 > ball_x > 60:
             if player_1_y < ball_y + 25:
                 if player_1_y + 150 > ball_y:
                     ball_x = 100  # Condition to debug the paddle
@@ -97,42 +110,31 @@ while game_loop:
                     if ball_dy == 0:
                         ball_dy = 5
 
-                    # Paddle improvement
-                    if player_1_y <= ball_y <= (player_1_y + 30) or (player_1_y + 120) <= ball_y <= (player_1_y + 150):
-                        ball_dy *= -1.10  # Increase the speed in the dy.
-                    elif (player_1_y + 70) <= ball_y <= (player_1_y + 80):
-                        ball_dy *= 0
-                    else:
-                        ball_dy *= 1  
+                    paddle_imp(player_1_y)
 
                     # Condition to maintain the game in a playable speed.
-                    if ball_dx < 20.00:  
+                    if ball_dx < 20.00:
                         ball_dx *= -1.15
                     else:
                         ball_dx *= -1
-                        
+
                     bounce_sound_effect.play()
 
         # Ball collision with the player 2 's paddle.
-        if 1200 > ball_x and ball_x > 1160:
-            if player_2_y < ball_y + 25:
-                if player_2_y + 150 > ball_y:
-                    ball_x = 1160
-                    if ball_dy == 0:
-                        ball_dy = 5
-                        
-                    if player_2_y <= ball_y <= (player_2_y + 30) or (player_2_y + 120) <= ball_y <= (player_2_y + 150):
-                        ball_dy *= -1.10
-                    elif (player_2_y + 70) <= ball_y <= (player_2_y + 80):
-                        ball_dy *= 0
-                    else:
-                        ball_dy *= 1
-                    
-                    if ball_dx < 20.00:    
-                        ball_dx *= -1.15
-                    else:
-                        ball_dx *= -1
-                    bounce_sound_effect.play()
+        if 1200 > ball_x > 1160:
+            if player_2_y < ball_y + 25 and player_2_y + 150 > ball_y:
+                ball_x = 1160
+
+                if ball_dy == 0:
+                    ball_dy = 5
+
+                paddle_imp(player_2_y)
+
+                if ball_dx < 20.00:
+                    ball_dx *= -1.15
+                else:
+                    ball_dx *= -1
+                bounce_sound_effect.play()
 
         # Scoring points.
         if ball_x < -50:
@@ -184,7 +186,7 @@ while game_loop:
             player_2_y -= 5
         elif player_2_y < ball_y:
             player_2_y += 5
-            
+
         if player_2_y <= 0:
             player_2_y = 0
         elif player_2_y >= 570:
